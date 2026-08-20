@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 50px 30px;
+  background: #f4f7fb;
+}
+
+.page-header {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 42px;
+  color: #172033;
+}
+
+.description {
+  margin-top: 12px;
+  color: #667085;
+  font-size: 17px;
+}
+
+.employee-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.employee-card {
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e4e7ec;
+  box-shadow: 0 8px 25px rgba(16, 24, 40, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.employee-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(16, 24, 40, 0.15);
+}
+
+.employee-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.employee-avatar {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.employee-header h2 {
+  margin: 0 0 5px;
+  font-size: 20px;
+  color: #172033;
+}
+
+.employee-header p {
+  margin: 0;
+  color: #667085;
+  font-size: 14px;
+}
+
+.employee-details {
+  margin-top: 20px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item span {
+  color: #667085;
+  font-size: 14px;
+}
+
+.detail-item strong {
+  color: #344054;
+  font-size: 14px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .employee-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 35px 15px;
+  }
+
+  .page-header h1 {
+    font-size: 32px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .employee-container {
+    grid-template-columns: 1fr;
+  }
+}
