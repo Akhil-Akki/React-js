@@ -1,0 +1,14 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
