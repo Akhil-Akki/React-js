@@ -1,0 +1,54 @@
+import { useEffect, useState } from "react";
+
+function Guides() {
+  const [guides, setGuides] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadGuides() {
+      try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/users");
+        if (!response.ok) throw new Error("Unable to load guides.");
+        const data = await response.json();
+        if (active) setGuides(data.slice(0, 6));
+      } catch (err) {
+        if (active) setError(err.message);
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+
+    loadGuides();
+    return () => { active = false; };
+  }, []);
+
+  return (
+    <section className="container page-section">
+      <div className="page-header"><span className="eyebrow">LOCAL EXPERTS</span><h1>Travel Guides</h1><p>Meet our guide network. This section demonstrates API integration using a public REST API.</p></div>
+
+      {loading && <div className="loading">Loading guides...</div>}
+      {error && <div className="error-box">{error}</div>}
+
+      {!loading && !error && (
+        <div className="guides-grid">
+          {guides.map((guide) => (
+            <article className="guide-card" key={guide.id}>
+              <div className="avatar">{guide.name.charAt(0)}</div>
+              <div>
+                <h3>{guide.name}</h3>
+                <p>@{guide.username}</p>
+                <p>{guide.email}</p>
+                <span className="guide-city">📍 {guide.address.city}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+export default Guides;
