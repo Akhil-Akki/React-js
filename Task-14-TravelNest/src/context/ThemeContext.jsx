@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
-import { ThemeContext } from "./ThemeContext.js";
+import { createContext, useContext, useMemo, useState } from "react";
+
+const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
   const [darkMode, setDarkMode] = useState(
@@ -9,27 +10,20 @@ export function ThemeProvider({ children }) {
   const toggleTheme = () => {
     setDarkMode((current) => {
       const next = !current;
-
-      localStorage.setItem(
-        "travelnest-theme",
-        next ? "dark" : "light",
-      );
-
+      localStorage.setItem("travelnest-theme", next ? "dark" : "light");
       return next;
     });
   };
 
-  const value = useMemo(
-    () => ({
-      darkMode,
-      toggleTheme,
-    }),
-    [darkMode],
-  );
+  const value = useMemo(() => ({ darkMode, toggleTheme }), [darkMode]);
 
   return (
     <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );
+}
+
+export function useTheme() {
+  return useContext(ThemeContext);
 }
